@@ -8,7 +8,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      # Optionally set up Python if needed for other steps (not shown here)
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      
+      # Pull the latest version of the base image to ensure it's up to date
+      - name: Pull latest base image
+        run: docker pull tiangolo/uvicorn-gunicorn-fastapi:python3.9
+
+      # Build the Docker image, with caching of Docker layers
+      - name: Build Docker image
+        run: |
+          docker build -t fastapirepo . --cache-from tiangolo/uvicorn-gunicorn-fastapi:python3.9
+
+      # Run unit tests in the Docker container
       - name: Unit Tests
         run: |
-          docker build -t fastapirepo .
           docker run -e OPENAI_ORG_ID=${{ secrets.OPENAI_ORG_ID }} -e OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} fastapirepo pytest
