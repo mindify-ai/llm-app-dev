@@ -11,8 +11,8 @@ jobs:
 
       - name: Unit Tests
         run: |
-          docker build -t fastapi-ci-cd .
-          docker run --rm -e OpenAI_ORG_ID=${{ secrets.OpenAI_ORG_ID }} OPENAI_API_KEY=${{secrets.OPENAI_API_KEY}} fastapi-ci-cd pytest
+          docker build -t fastapirepo .
+          docker run --rm -e OpenAI_ORG_ID=${{ secrets.OpenAI_ORG_ID }} OPENAI_API_KEY=${{secrets.OPENAI_API_KEY}} fastapirepo pytest
         env:
           OpenAI_ORG_ID: ${{ secrets.OpenAI_ORG_ID }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
