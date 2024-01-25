@@ -1,12 +1,18 @@
 name: LLM API CI/CD - Unit Tests
+
 on: [push, pull_request]
+
 jobs:
   # Run Unit Tests
   unit-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: Unit Tests
         run: |
           docker build -t fastapi-ci-cd .
-          docker run --rm fastapi-ci-cd pytest
+          docker run --rm -e OpenAI_ORG_ID=${{ secrets.OpenAI_ORG_ID }} OPENAI_API_KEY=${{secrets.OPENAI_API_KEY}} fastapi-ci-cd pytest
+        env:
+          OpenAI_ORG_ID: ${{ secrets.OpenAI_ORG_ID }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
