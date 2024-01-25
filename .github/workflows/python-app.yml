@@ -8,11 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: Unit Tests
         run: |
           docker build -t fastapirepo .
-          docker run --rm -e OpenAI_ORG_ID=${{ secrets.OpenAI_ORG_ID }} OPENAI_API_KEY=${{secrets.OPENAI_API_KEY}} fastapirepo pytest
-        env:
-          OpenAI_ORG_ID: ${{ secrets.OpenAI_ORG_ID }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          docker run --rm -e OpenAI_ORG_ID=${{ secrets.OpenAI_ORG_ID }} -e OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} fastapirepo pytest
