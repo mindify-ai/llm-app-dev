@@ -1,0 +1,13 @@
+openai
+uvicorn
+fastapi
+python-dotenv
+python-multipart
+config
+fastenv
+pymongo[srv]
+PyGithub
+httpx
+algoliasearch==3.0.0
+azure-identity
+azure-storage-blob

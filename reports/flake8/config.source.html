@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>config.py - flake8 annotated source</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+   </head>
+   <body>
+      <div id="masthead" class="sev-2"></div>
+      <div id="page">
+         <h1>
+            <a href="config.report.html">
+               <img src="back.svg" alt="&#x2B05;">
+               config.py source
+            </a>
+         </h1>
+
+         <div id="doc">
+            <div id="l1"
+               class="code sev- "><tt><i>1</i> <span class="c1"># config.py</span></tt>
+            </div>
+            <div id="l2"
+               class="code sev- "><tt><i>2</i> <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseSettings</span></tt>
+            </div>
+            <div id="l3"
+               class="code sev- "><tt><i>3</i> &nbsp;</tt>
+            </div>
+            <div id="l4"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E302
+                     </span>
+                     Expected 2 blank lines, found 1</li>
+               
+               </ul><tt><i>4</i> <span class="k">class</span> <span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span></tt>
+            </div>
+            <div id="l5"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E225
+                     </span>
+                     Missing whitespace around operator</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (120 > 79 characters)</li>
+               
+               </ul><tt><i>5</i>     <span class="n">OPENAI_API_KEY</span><span class="o">=</span><span class="s2">&quot;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&quot;</span>  <span class="c1"># default value if env variable does not exist</span></tt>
+            </div>
+            <div id="l6"
+               class="code sev- "><tt><i>6</i>     <span class="n">OPENAI_API_KEY</span><span class="p">:</span> <span class="nb">str</span></tt>
+            </div>
+            <div id="l7"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E225
+                     </span>
+                     Missing whitespace around operator</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E261
+                     </span>
+                     At least two spaces before inline comment</li>
+               
+               </ul><tt><i>7</i>     <span class="n">APP_MAX</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">100</span> <span class="c1"># default value if env variable does not exist</span></tt>
+            </div>
+            <div id="l8"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E225
+                     </span>
+                     Missing whitespace around operator</li>
+               
+               </ul><tt><i>8</i>     <span class="n">MONGODB_PASSWORD</span><span class="o">=</span><span class="s2">&quot;0sI4oRGZ1aTbtuSV&quot;</span></tt>
+            </div>
+            <div id="l9"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E225
+                     </span>
+                     Missing whitespace around operator</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (180 > 79 characters)</li>
+               
+                  <li>
+                     <span class="count sev-2">
+                        E261
+                     </span>
+                     At least two spaces before inline comment</li>
+               
+               </ul><tt><i>9</i>     <span class="n">MONGODB_CONNECTION_STRING</span><span class="o">=</span><span class="s2">&quot;mongodb+srv://admin:0sI4oRGZ1aTbtuSV@dragoncluster-0.5hqz1no.mongodb.net/?retryWrites=true&amp;w=majority&quot;</span> <span class="c1"># default value if env variable does not exist</span></tt>
+            </div>
+            <div id="l10"
+               class="code sev- "><tt><i>10</i> <span class="c1"># global instance</span></tt>
+            </div>
+            <div id="l11"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E305
+                     </span>
+                     Expected 2 blank lines after class or function definition, found 0</li>
+               
+               </ul><tt><i>11</i> <span class="n">settings</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">()</span></tt>
+            </div>
+            
+         </div>
+      </div>
+   </body>
+</html>

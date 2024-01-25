@@ -1,0 +1,6 @@
+.space
+.env
+config.py
+config
+__pycache__
+.pytest_cache

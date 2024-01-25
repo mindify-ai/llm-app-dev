@@ -1,0 +1,12 @@
+name: LLM API CI/CD - Unit Tests
+on: [push, pull_request]
+jobs:
+  # Run Unit Tests
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Unit Tests
+        run: |
+          docker build -t fastapi-ci-cd .
+          docker run --rm fastapi-ci-cd pytest
