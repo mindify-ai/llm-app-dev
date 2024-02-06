@@ -1,13 +1,18 @@
 import os
 from openai import OpenAI
+import requests
+
+API_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN")
+
+API_URL = "https://api-inference.huggingface.co/models/meta-llama/Llama-2-7b-chat-hf"
+headers = {"Authorization": f"Bearer {API_TOKEN}"}
 
 client = OpenAI(
-    organization=os.getenv('OPENAI_ORG_ID'),
-    api_key=os.getenv('OPENAI_API_KEY')
+    organization=os.getenv("OPENAI_ORG_ID"), api_key=os.getenv("OPENAI_API_KEY")
 )
 
 
-def chatbot(user_request:str):
+def gpt_chatbot(user_request: str):
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
@@ -17,3 +22,9 @@ def chatbot(user_request:str):
     )
 
     return completion.choices[0].message
+
+
+def llama_chatbot(user_request: str):
+    response = requests.post(API_URL, headers=headers, json={"inputs": user_request})
+
+    return response.json()
