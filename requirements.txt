@@ -7,3 +7,4 @@ config
 PyGithub
 httpx
 pytest
+gradio
