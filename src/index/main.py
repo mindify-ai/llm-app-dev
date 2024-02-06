@@ -2,7 +2,7 @@ from fastapi import FastAPI, Form
 from fastapi.middleware.cors import CORSMiddleware
 from ai import gpt_chatbot, llama_chatbot
 
-isProduction = False
+isProduction = True
 
 origins = ["*"]
 
