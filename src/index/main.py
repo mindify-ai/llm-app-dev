@@ -1,10 +1,32 @@
 from fastapi import FastAPI, Form
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import HTMLResponse
 from ai import gpt_chatbot, llama_chatbot
 
 isProduction = True
 
 origins = ["*"]
+
+html = f"""
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FastAPI on Vercel</title>
+        <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
+    </head>
+    <body>
+        <div class="bg-gray-200 p-4 rounded-lg shadow-lg">
+            <h1>Hello from FastAPI</h1>
+            <ul>
+                <li><a href="/docs">/docs</a></li>
+                <li><a href="/redoc">/redoc</a></li>
+            </ul>
+            <p>Powered by <a href="https://vercel.com" target="_blank">Vercel</a></p>
+        </div>
+    </body>
+</html>
+"""
 
 if isProduction:
     app = FastAPI(
@@ -12,8 +34,10 @@ if isProduction:
         docs_url=None,  # Disable docs (Swagger UI)
         redoc_url=None,  # Disable redoc
     )
+    app.mount("/static", StaticFiles(directory="static"), name="static")
 else:
     app = FastAPI(title="LLM API Endpoints")
+    app.mount("/static", StaticFiles(directory="static"), name="static")
 
 app.add_middleware(
     CORSMiddleware,
@@ -26,8 +50,8 @@ app.add_middleware(
 
 # Create a homepage route
 @app.get("/")
-def index():
-    return {"server ok": True}
+async def index():
+    return HTMLResponse(html)
 
 
 @app.post("/api/chat/gpt3", tags=["OpenAI GPT-3"])
