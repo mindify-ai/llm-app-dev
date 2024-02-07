@@ -9,8 +9,8 @@ origins = ["*"]
 if isProduction:
     app = FastAPI(
         title="LLM API Endpoints",
-        docs_url=None,                  # Disable docs (Swagger UI)
-        redoc_url=None,                 # Disable redoc
+        docs_url=None,  # Disable docs (Swagger UI)
+        redoc_url=None,  # Disable redoc
     )
 else:
     app = FastAPI(title="LLM API Endpoints")
@@ -39,6 +39,7 @@ async def gpt_chat(user_request: str = Form(...)):
     result = gpt_chatbot(user_request=user_request)
 
     return {"result": result}
+
 
 @app.post("/api/chat/llama", tags=["Llama 2 7B Chat"])
 async def llama_chat(user_request: str = Form(...)):
