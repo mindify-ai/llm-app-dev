@@ -1,44 +1,56 @@
-import gradio as gr
-import requests
+from fastapi import FastAPI, Form
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import HTMLResponse
+from .ai.chatbot import gpt_chatbot, llama_chatbot
 
-is_gpt3 = False
+isProduction = False
 
+origins = ["*"]
 
-def echo_gptchatbot(message, history):
-    # Post the message to the server
-    response = requests.post(
-        "http://127.0.0.1:8000/api/chat/gpt3", data={"user_request": message}
+if isProduction:
+    app = FastAPI(
+        title="LLM API Endpoints",
+        docs_url=None,  # Disable docs (Swagger UI)
+        redoc_url=None,  # Disable redoc
     )
-    # Return the response
-    llm_output = response.json()["result"]["content"]
-
-    return llm_output
-
-
-def echo_llamachatbot(message, history):
-    # Post the message to the server
-    response = requests.post(
-        "http://127.0.0.1:8000/api/chat/llama", data={"user_request": message}
-    )
-
-    # Return the response
-    llm_output = response.json()["result"][0]["generated_text"]
-
-    return llm_output
-
-
-# Create a Gradio interface with the chatbot
-if is_gpt3:
-    demo = gr.ChatInterface(
-        fn=echo_gptchatbot,
-        examples=["What is OpenAI?", "What is GPT-3?"],
-        title="GPT-3 Chatbot",
-    )
+    #app.mount("/static", StaticFiles(directory="static"), name="static")
 else:
-    demo = gr.ChatInterface(
-        fn=echo_llamachatbot,
-        examples=["What is OpenAI?", "What is LLM?"],
-        title="LLM Chatbot - Llama 2 7B",
-    )
+    app = FastAPI(title="LLM API Endpoints")
+    #app.mount("/static", StaticFiles(directory="static"), name="static")
 
-demo.launch()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["POST", "GET", "PUT", "DELETE"],
+    allow_headers=["*"],
+)
+
+
+# Create a homepage route
+@app.get("/")
+async def index():
+    return {"server ok": True}
+
+
+@app.post("/api/chat/gpt3", tags=["OpenAI GPT-3"])
+async def gpt_chat(user_request: str = Form(...)):
+    """
+    Chat with LLM Backend - GPT-3
+    """
+    # Get the text content in the user request
+    result = gpt_chatbot(user_request=user_request)
+
+    return {"result": result}
+
+
+@app.post("/api/chat/llama", tags=["Llama 2 7B Chat"])
+async def llama_chat(user_request: str = Form(...)):
+    """
+    Chat with LLM Backend - Llama 2 7b Chat
+    """
+    # Get the text content in the user request
+    result = llama_chatbot(user_request=user_request)
+
+    return {"result": result}

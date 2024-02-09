@@ -1,3 +1,13 @@
+---
+title: Building your generative AI Apps in Python
+emoji: 🤖
+colorFrom: "green"
+colorTo: "green"
+sdk: docker
+sdk_version: 3.8.5
+app_file: app.py
+pinned: false
+---
 # 生成式AI後端開發部署實戰
 # Building your generative AI API in Python 
 
