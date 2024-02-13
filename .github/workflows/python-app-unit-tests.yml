@@ -17,12 +17,12 @@ jobs:
       
       # Pull the latest version of the base image to ensure it's up to date
       - name: Pull latest base image
-        run: docker pull tiangolo/uvicorn-gunicorn-fastapi:python3.9
+        run: docker pull ubuntu:20.04
 
       # Build the Docker image, with caching of Docker layers
       - name: Build Docker image
         run: |
-          docker build -t fastapirepo . --cache-from tiangolo/uvicorn-gunicorn-fastapi:python3.9
+          docker build -t fastapirepo . --cache-from ubuntu:20.04
 
       # Run unit tests in the Docker container
       - name: Unit Tests
