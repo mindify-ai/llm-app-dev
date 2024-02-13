@@ -27,4 +27,4 @@ jobs:
       # Run unit tests in the Docker container
       - name: Unit Tests
         run: |
-          docker run -e OPENAI_ORG_ID=${{ secrets.OPENAI_ORG_ID }} -e OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} -e HUGGINGFACE_API_TOKEN=${{ secrets.HUGGINGFACE_API_TOKEN }} fastapirepo pytest
+          docker run -e OPENAI_ORG_ID=${{ secrets.OPENAI_ORG_ID }} -e OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} -e HUGGINGFACE_API_TOKEN=${{ secrets.HUGGINGFACE_API_TOKEN }} fastapirepo pytest app/test_main.py
