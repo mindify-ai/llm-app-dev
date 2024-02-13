@@ -13,8 +13,8 @@ jobs:
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
-      
+          python-version: "3.9"
+
       # Pull the latest version of the base image to ensure it's up to date
       - name: Pull latest base image
         run: docker pull ubuntu:20.04
