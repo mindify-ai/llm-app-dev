@@ -17,6 +17,7 @@ RUN if [ ! -e /usr/bin/python ]; then ln -s /usr/bin/python3 /usr/bin/python; fi
 # Set default values for environment variables
 ENV OPENAI_ORG_ID=default_org_id
 ENV OPENAI_API_KEY=default_api_key
+ENV HUGGINGFACE_API_TOKEN=default_huggingface_token
 
 # Set environment variables for Matplotlib and Fontconfig
 ENV MPLCONFIGDIR=/app/matplotlib_cache
