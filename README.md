@@ -25,8 +25,8 @@ pip3 install -r requirements.txt
 ```
 #### Start the application
 ```
-cd src/
-python3 -m uvicorn index.main:app --reload
+cd api/
+python3 -m uvicorn app.main:app --reload
 ```
 #### Run unit tests
 ```
