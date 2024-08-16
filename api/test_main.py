@@ -9,7 +9,7 @@ def test_read_main():
     assert response.json() == {"server ok": True}
     
 def test_gpt_chat():
-    response = client.post("/api/chat/gpt3", data={"user_request": "What is OpenAI?"})
+    response = client.post("/api/chat/gpt4o/mini", data={"user_request": "What is OpenAI?"})
     assert response.status_code == 200
     assert response.json()["result"] != ""
     

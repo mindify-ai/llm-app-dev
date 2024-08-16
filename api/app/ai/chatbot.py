@@ -14,17 +14,17 @@ client = OpenAI(
 
 def gpt_chatbot(user_request: str):
     completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": user_request},
         ],
     )
 
-    return completion.choices[0].message
+    return completion.choices[0].message.content    
 
 
 def llama_chatbot(user_request: str):
     response = requests.post(API_URL, headers=headers, json={"inputs": user_request})
 
-    return response.json()
+    return response.json()[0]["generated_text"]

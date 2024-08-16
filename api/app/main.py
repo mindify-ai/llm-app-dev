@@ -34,10 +34,10 @@ async def index():
     return {"server ok": True}
 
 
-@app.post("/api/chat/gpt3", tags=["OpenAI GPT-3"])
+@app.post("/api/chat/gpt4o/mini", tags=["OpenAI GPT-4o mini"])
 async def gpt_chat(user_request: str = Form(...)):
     """
-    Chat with LLM Backend - GPT-3
+    Chat with LLM Backend - GPT-4o mini
     """
     # Get the text content in the user request
     result = gpt_chatbot(user_request=user_request)

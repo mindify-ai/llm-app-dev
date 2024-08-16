@@ -1,30 +1,25 @@
 import gradio as gr
 import requests
 
-is_gpt3 = True
+is_gpt3 = False
 
 
 def echo_gptchatbot(message, history):
     # Post the message to the server
     response = requests.post(
-        "https://markchenx-udemy-genai-app-course.hf.space/api/chat/gpt3", data={"user_request": message}
+        "https://markchenx-udemy-demo-2.hf.space/api/chat/gpt4o/mini", data={"user_request": message}
     )
-    # Return the response
-    llm_output = response.json()["result"]["content"]
 
-    return llm_output
+    return response.json()["result"]
 
 
 def echo_llamachatbot(message, history):
     # Post the message to the server
     response = requests.post(
-        "https://markchenx-udemy-genai-app-course.hf.space/api/chat/llama", data={"user_request": message}
+        "https://markchenx-udemy-demo-2.hf.space/api/chat/llama", data={"user_request": message}
     )
 
-    # Return the response
-    llm_output = response.json()["result"][0]["generated_text"]
-
-    return llm_output
+    return response.json()["result"]
 
 
 # Create a Gradio interface with the chatbot
@@ -32,7 +27,7 @@ if is_gpt3:
     demo = gr.ChatInterface(
         fn=echo_gptchatbot,
         examples=["What is OpenAI?", "What is GPT-3?"],
-        title="GPT-3 Chatbot",
+        title="GPT-4o mini Chatbot",
     )
 else:
     demo = gr.ChatInterface(
